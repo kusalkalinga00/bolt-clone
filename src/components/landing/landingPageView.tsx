@@ -1,23 +1,19 @@
 "use client";
-import Lookup from "@/data/Lookup";
+
 import React, { useContext, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, Link } from "lucide-react";
-import Colors from "@/data/Colors";
+
+import { Lookup } from "@/data/Lookup";
+import { colors } from "@/data/Colors";
 import { MessagesContext } from "@/context/MessagesContext";
 
 const LandingPageView = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
-  const { messages, setMessages } = useContext(MessagesContext);
+  const { addMessage } = useContext(MessagesContext);
 
-  const onGenerate = (input: string) => {
-    setMessages((prev) => [
-      ...prev,
-      {
-        role: "user",
-        message: input,
-      },
-    ]);
+  const onGenerate = (prompt: string) => {
+    addMessage({ role: "user", content: prompt });
   };
 
   return (
@@ -27,7 +23,7 @@ const LandingPageView = () => {
 
       <div
         className="p-5 border rounded-xl max-w-xl w-full mt-3 "
-        style={{ backgroundColor: Colors.BACKGROUND }}
+        style={{ backgroundColor: colors.BACKGROUND }}
       >
         <div className="flex gap-3">
           <Textarea

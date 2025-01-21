@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import Header from "@/components/common/Header";
-import { MessagesContext } from "@/context/MessagesContext";
+import PromptUserProvider from "@/providers/prompt-provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,13 +23,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <MessagesContext.Provider
-            value={{ messages: [], setMessages: () => {} }}
-          >
+          <PromptUserProvider>
             <Header />
 
             {children}
-          </MessagesContext.Provider>
+          </PromptUserProvider>
         </ThemeProvider>
       </body>
     </html>

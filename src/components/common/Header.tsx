@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
-import Colors from "@/data/Colors";
+import { colors } from "@/data/Colors";
 
 const Header = () => {
   return (
@@ -13,7 +13,7 @@ const Header = () => {
         <Button
           className="text-white"
           style={{
-            backgroundColor: Colors.BACKGROUND,
+            backgroundColor: colors.BACKGROUND,
           }}
         >
           Get Started

@@ -1,16 +1,15 @@
-import { createContext, Dispatch, SetStateAction } from "react";
+import { createContext } from "react";
 
-interface Message {
+export interface Message {
   role: string;
-  message: string;
+  content: string;
 }
 
-interface MessagesContextType {
+interface MessagesContextProps {
   messages: Message[];
-  setMessages: Dispatch<SetStateAction<Message[]>>;
+  addMessage: (message: Message) => void;
 }
 
-export const MessagesContext = createContext<MessagesContextType>({
-  messages: [],
-  setMessages: () => {},
-});
+export const MessagesContext = createContext<MessagesContextProps>(
+  {} as MessagesContextProps
+);
