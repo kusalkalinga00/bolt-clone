@@ -13,7 +13,7 @@ import SignInDialog from "../Modal/SignInDialog";
 const LandingPageView = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
   const { addMessage } = useContext(MessagesContext);
-  const { userDetails, setUserDetails } = useContext(UserDetailsContext);
+  const { userDetails } = useContext(UserDetailsContext);
 
   const [openDialog, setOpenDialog] = useState<boolean>(false);
 
