@@ -3,6 +3,8 @@ import { createContext } from "react";
 export interface UserDetails {
   name: string;
   email: string;
+  picture: string;
+  uid?: string;
 }
 
 interface UserDetailsContextProps {
