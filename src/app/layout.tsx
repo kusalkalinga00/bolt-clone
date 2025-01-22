@@ -3,6 +3,9 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import Header from "@/components/common/Header";
 import PromptUserProvider from "@/providers/prompt-provider";
+import AuthProvider from "@/providers/auth-provider";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { ConvexClientProvider } from "@/providers/convez-client-provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,11 +26,19 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <PromptUserProvider>
-            <Header />
+          <ConvexClientProvider>
+            <GoogleOAuthProvider
+              clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
+            >
+              <PromptUserProvider>
+                <AuthProvider>
+                  <Header />
 
-            {children}
-          </PromptUserProvider>
+                  {children}
+                </AuthProvider>
+              </PromptUserProvider>
+            </GoogleOAuthProvider>
+          </ConvexClientProvider>
         </ThemeProvider>
       </body>
     </html>

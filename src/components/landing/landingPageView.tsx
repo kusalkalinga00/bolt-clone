@@ -7,12 +7,21 @@ import { ArrowRight, Link } from "lucide-react";
 import { Lookup } from "@/data/Lookup";
 import { colors } from "@/data/Colors";
 import { MessagesContext } from "@/context/MessagesContext";
+import { UserDetailsContext } from "@/context/UserDetailsContext";
+import SignInDialog from "../Modal/SignInDialog";
 
 const LandingPageView = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
   const { addMessage } = useContext(MessagesContext);
+  const { userDetails } = useContext(UserDetailsContext);
+
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
 
   const onGenerate = (prompt: string) => {
+    if (!userDetails?.name) {
+      setOpenDialog(true);
+      return;
+    }
     addMessage({ role: "user", content: prompt });
   };
 
@@ -54,6 +63,8 @@ const LandingPageView = () => {
           </h2>
         ))}
       </div>
+
+      <SignInDialog openDialog={openDialog} onOpenChange={setOpenDialog} />
     </div>
   );
 };
