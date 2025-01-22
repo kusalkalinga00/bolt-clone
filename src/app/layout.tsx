@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import Header from "@/components/common/Header";
 import PromptUserProvider from "@/providers/prompt-provider";
+import AuthProvider from "@/providers/auth-provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,9 +25,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <PromptUserProvider>
-            <Header />
+            <AuthProvider>
+              <Header />
 
-            {children}
+              {children}
+            </AuthProvider>
           </PromptUserProvider>
         </ThemeProvider>
       </body>
